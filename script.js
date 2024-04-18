@@ -18,7 +18,7 @@ quoteButton.addEventListener("click", function () {
   quoteSpace.innerHTML = randomQuote;
 });
 
-// Load saved notes from local storage when the page loads
+// get saved notes from local storage
 window.onload = function () {
   let savedNotes = localStorage.getItem("savedNotes");
   if (savedNotes) {
@@ -27,7 +27,7 @@ window.onload = function () {
   }
 };
 
-// Function to add close buttons to notes
+// experiment 
 function addCloseButtons() {
   let nodeList = document.querySelectorAll("#myNotes li");
   nodeList.forEach((item) => {
@@ -35,7 +35,7 @@ function addCloseButtons() {
   });
 }
 
-// Function to add a close button to a note
+// add close buttons
 function addCloseButton(note) {
   let span = document.createElement("span");
   let text = document.createTextNode("\u00D7"); // x unicode
@@ -45,11 +45,11 @@ function addCloseButton(note) {
   span.onclick = function () {
     let div = this.parentElement;
     div.style.display = "none";
-    saveNotesToLocalStorage(); // Update local storage after note deletion
+    saveNotesToLocalStorage(); // update local storage after note deletion
   };
 }
 
-// Function to create a new note
+//  note text
 function newElement() {
   let inputvalue = document.querySelector("#myInput").value;
   if (inputvalue === "") {
@@ -61,7 +61,7 @@ function newElement() {
   document.querySelector("#myInput").value = "";
 }
 
-// Function to create a new note element
+// new note div
 function createNote(noteContent) {
   let li = document.createElement("li");
   let savedNote = document.createTextNode(noteContent);
@@ -70,18 +70,18 @@ function createNote(noteContent) {
   addCloseButton(li); // Add close button to the new note
 }
 
-// Function to save notes to local storage
+// local storage
 function saveNotesToLocalStorage() {
   let notes = document.querySelector("#myNotes").innerHTML;
   localStorage.setItem("savedNotes", notes);
 }
 
-// Function to clear the input field
+//  clear the input field, notespace
 function clearElement() {
   document.querySelector("#myInput").value = "";
 }
 
-// Function to display an empty message
+// is what it says
 function displayEmptyMessage(message) {
   let emptyText = document.querySelector("#emptytext");
   emptyText.innerHTML = message;
@@ -90,7 +90,7 @@ function displayEmptyMessage(message) {
   setTimeout(hideEmptyMessage, 3000); // Hide message after 3 seconds
 }
 
-// Function to hide the empty message
+// is what it says
 function hideEmptyMessage() {
   let emptyText = document.querySelector("#emptytext");
   emptyText.innerHTML = "";
