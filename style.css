@@ -52,7 +52,6 @@ header {
   margin-top: 20vh;
 }
 
-
 .save-button {
   padding: 10px;
   background-color: #e6e6fa;
@@ -117,7 +116,7 @@ ul li {
 }
 
 .close {
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   top: 0;
   padding: 12px 16px 12px 16px;

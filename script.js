@@ -23,32 +23,25 @@ window.onload = function () {
   let savedNotes = localStorage.getItem("savedNotes");
   if (savedNotes) {
     document.querySelector("#myNotes").innerHTML = savedNotes;
-    addCloseButtons(); // Add close buttons to loaded notes
+    addCloseButton(); // Add close buttons to loaded notes
   }
 };
 
-// experiment 
-function addCloseButtons() {
+function addCloseButton() {
   let nodeList = document.querySelectorAll("#myNotes li");
   nodeList.forEach((item) => {
-    addCloseButton(item);
+    let span = document.createElement("span");
+    let text = document.createTextNode("\u00D7"); // x unicode
+    span.className = "close";
+    span.appendChild(text);
+    item.appendChild(span);
+    span.onclick = function () {
+      let div = this.parentElement;
+      div.style.display = "none";
+      saveNotesToLocalStorage(); // update local storage after note deletion
+    };
   });
 }
-
-// add close buttons
-function addCloseButton(note) {
-  let span = document.createElement("span");
-  let text = document.createTextNode("\u00D7"); // x unicode
-  span.className = "close";
-  span.appendChild(text);
-  note.appendChild(span);
-  span.onclick = function () {
-    let div = this.parentElement;
-    div.style.display = "none";
-    saveNotesToLocalStorage(); // update local storage after note deletion
-  };
-}
-
 //  note text
 function newElement() {
   let inputvalue = document.querySelector("#myInput").value;
@@ -67,7 +60,7 @@ function createNote(noteContent) {
   let savedNote = document.createTextNode(noteContent);
   li.appendChild(savedNote);
   document.querySelector("#myNotes").appendChild(li);
-  addCloseButton(li); // Add close button to the new note
+  addCloseButton();
 }
 
 // local storage
